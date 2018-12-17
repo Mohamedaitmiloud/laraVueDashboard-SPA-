@@ -135,6 +135,7 @@
             createUser(){
                 this.$Progress.start()
                 this.form.post('api/user');
+                event.$emit('userCreated');
                 $('#newUser').modal('hide');
                 toast({
                         type: 'success',
@@ -145,6 +146,9 @@
         },
         created() {
             this.loadUsers();
+            event.$on('userCreated',()=>{
+                this.loadUsers();
+            })
         }
     }
 </script>

@@ -14082,6 +14082,8 @@ var toast = __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default.a.mixin({
 
 window.toast = toast;
 
+window.event = new Vue();
+
 
 var options = {
   color: '#38c172',
@@ -51459,6 +51461,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         createUser: function createUser() {
             this.$Progress.start();
             this.form.post('api/user');
+            event.$emit('userCreated');
             $('#newUser').modal('hide');
             toast({
                 type: 'success',
@@ -51468,7 +51471,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     created: function created() {
+        var _this2 = this;
+
         this.loadUsers();
+        event.$on('userCreated', function () {
+            _this2.loadUsers();
+        });
     }
 });
 

@@ -31,6 +31,8 @@ const toast = Swal.mixin({
 
 window.toast=toast;
 
+window.event = new Vue();
+
 
 import VueProgressBar from 'vue-progressbar'
 const options = {
